@@ -3,7 +3,7 @@ from discord.ext import commands
 
 
 def run_discord_bot():
-  TOKEN = 'MTA3ODc2MDc5OTQwMjczMzYyOQ.GiBoWl.gA-SIQphLEjy7mYZxvB63i_lonGsIa_M5cFrLc'
+  TOKEN = '' #Token is put manually 
   intents = discord.Intents.all()
   client = commands.Bot(command_prefix = "hp!", intents = intents)
   links = json.load(open("gifs.json"))
