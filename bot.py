@@ -3,9 +3,9 @@ from discord.ext import commands
 
 
 def run_discord_bot():
-  TOKEN = '' #Token is put manually 
+  TOKEN = 'MTA3ODc2MDc5OTQwMjczMzYyOQ.GdoGPm.BCoLudvJ3qKZ_ZQT51DjbA-gkQVRy55QT2455E' #Token is put manually 
   intents = discord.Intents.all()
-  client = commands.Bot(command_prefix = "hp!", intents = intents)
+  client = commands.Bot(command_prefix = ".", intents = intents)
   links = json.load(open("gifs.json"))
 
   @client.event
@@ -35,6 +35,13 @@ def run_discord_bot():
       await ctx.send(links["fin"])
       await ctx.send("Marvelous, " + ctx.message.author.mention + " saved " + username + "! What a generous soul")
       await member.edit(timed_out_until = None)
-    
+
+  @client.command(name = "kill", aliases = ["AVADA_KEDAVRA"])
+  @commands.has_any_role(543905846510354442, 1079186787257307228)
+  async def kick(ctx, member:discord.Member):
+    await ctx.send(random.choice(links["kill"]))
+    username = member.mention
+    await ctx.send("It can't be. " + ctx.message.author.mention + " used the killing curse :fearful: Poor " + username)
+    await member.kick(reason="AVADA KEDAVRA")
   client.run(TOKEN)
     
