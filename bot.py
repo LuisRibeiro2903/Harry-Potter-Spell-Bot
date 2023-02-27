@@ -19,12 +19,16 @@ def run_discord_bot():
 
   @client.command(name = "expel", aliases=["EXPELLIARMUS", "Expelliarmus", "expelliarmus"])
   async def Time_out(ctx, member:discord.Member):
-    await ctx.send(random.choice(links["expel"]))
+    percem = random.randint(1,10)
     username = member.mention
-    seconds = random.randint(10,120)
-    time = datetime.timedelta(seconds = seconds)
-    await ctx.send("" + username + " was hit by ***Expelliarmus*** and is unable to cast magic for " + str(seconds) + " seconds")
-    await member.edit(timed_out_until=discord.utils.utcnow() + time)
+    if percem <= 7:
+      await ctx.send(random.choice(links["expel"]))
+      seconds = random.randint(10,120)
+      time = datetime.timedelta(seconds = seconds)
+      await ctx.send(username + " was hit by ***Expelliarmus*** and is unable to cast magic for " + str(seconds) + " seconds")
+      await member.edit(timed_out_until=discord.utils.utcnow() + time)
+    else:
+      await ctx.send(ctx.message.author.mention + " tried to use ***Expelliarmus** on " + username + ", but it missed!")
 
   @client.command(name = "fin", aliases = ["Finite", "finite", "FINITE"])
   async def End_TO(ctx, member:discord.Member):
